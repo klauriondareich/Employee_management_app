@@ -1,30 +1,30 @@
 <div class="main">
     <div class="logo"><img src="assets/images/digiflynt_logo.png" alt="digiflynt logo"></div>
     <div>
-        <form action="">
+        <form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm.value)">
             <div class="form-item">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" ngModel>
             </div>
             <div class="form-item">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" ngModel>
             </div>
             <div class="form-item">
                 <label for="emailaddress">Email</label>
-                <input type="text" name="email_address" id="email_address">
+                <input type="email" name="email_address" id="email_address" ngModel>
             </div>
             <div class="form-item">
                 <label for="emailaddress">Phone</label>
-                <input type="text" name="phone_number" id="phone_number">
+                <input type="text" name="phone_number" id="phone_number" ngModel>
             </div>
             <div class="form-item">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" ngModel>
             </div>
             <div class="form-item">
                 <label for="password"> Confirm password</label>
-                <input type="password" name="Confirmpassword" id="Confirmpassword">
+                <input type="password" name="Confirmpassword" id="Confirmpassword" ngModel>
             </div>
             <button type="submit" class="sign_up_btn">Sign up now</button>
         </form>
