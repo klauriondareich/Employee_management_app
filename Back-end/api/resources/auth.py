@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-auth = Blueprint('auth', __name__)
+auth = Blueprint('auth', __name__, url_prefix = '/api/v1')
 
 @auth.route('/signup', methods = ['POST'])
 def signup():
@@ -11,5 +11,5 @@ def login():
     return 'Yeah login'
 
 @auth.route('/logout', methods = ['POST'])
-def signup():
+def logout():
     return 'Yeah logout'

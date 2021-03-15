@@ -1,4 +1,8 @@
 from flask import Flask
+
+from .resources.auth import auth
+from .resources.employee import employee
+
 import yaml
 import pymysql
 
@@ -9,7 +13,6 @@ def parse_yaml_data():
     return yaml.load(config_file, Loader = yaml.FullLoader)
 
 conf = parse_yaml_data()
-
 
 def set_db_config(app):
     connection = '{0}://{1}:{2}@{3}:{4}/{5}'.format(
@@ -24,3 +27,7 @@ def init_app():
     set_db_config(app)
     app.config['SECRET_KEY'] = conf['secret_key']
     return app
+
+def load_routes(app):
+    app.register_blueprint(auth)
+    app.register_blueprint(employee)

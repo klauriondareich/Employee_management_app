@@ -1,15 +1,15 @@
 from flask import Blueprint
 
-employee = Blueprint('employee', __name__)
+employee = Blueprint('employee', __name__, url_prefix = '/api/v1')
 
 @employee.route('/employees', methods = ['GET'])
 def get_employees():
-    return 'all the employees'
+    return {name: "mebale", age: 29, admin: False}
 
-@employee.route('/employee/<int:id>', ['GET'])
-def get_employee(id):
+@employee.route('/employee/<int:id>', methods = ['GET'])
+def get(id):
     return 'one employee'
 
-@employee.route('/update/employee/<int:id>', ['PUT'])
-def get_employee(id):
-    return 'one employee'
+@employee.route('/employee/update/<int:id>', methods = ['PUT'])
+def update(id):
+    return 'update one employee'
