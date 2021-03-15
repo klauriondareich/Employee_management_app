@@ -1,0 +1,41 @@
+/* CSS Style for the sign up page */
+
+.main{
+    width: 50%;
+    margin: auto;
+    padding-left: 250px;
+}
+.form-item{
+    padding-bottom: 10px;
+}
+.form-item label{
+    display: block;
+    padding-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #24292e;
+}
+.form-item input{
+    border: 1px solid #e1e4e8;
+    padding: 8px;
+    width: 40%;
+    border-radius: 5px;
+}
+input:focus{
+  outline: 0;
+  border: 1px solid #1863b9!important;
+  border-radius: 5px;
+}
+.logo{
+    padding: 40px 0px 20px 65px;
+}
+.sign_up_btn{
+    background-color: #1fbb4b;
+    border: 1px solid #1fbb4b;
+    border-radius: 5px;    
+    padding: 8px;
+    font-size: 15px;
+    width: 43%;
+    margin-top: 10px;
+    color: #fff;
+}
