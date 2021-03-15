@@ -1,11 +1,7 @@
-from api import create_app
+from api import app, db
+from api import models
 
-app = create_app()
-
-@app.route('/', methods = ['GET'])
-def index():
-    return "hello world"
-
+# db.create_all()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug = True)
