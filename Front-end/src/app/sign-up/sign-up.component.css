@@ -45,8 +45,15 @@ input.invalid-field{border: 1px solid red!important;}
     width: 53%;
     margin-top: 10px;
     color: #fff;
+    font-weight: bold;
 }
 .sign_up_btn:hover{
     cursor: pointer;
 }
 .input-required-sign{color: red;}
+.sign_in_element{
+  font-size: 15px;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+.sign_in_element a {color: #1fbb4b;}
