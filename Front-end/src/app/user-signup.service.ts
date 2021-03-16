@@ -10,13 +10,9 @@ export class UserSignupService {
 
   constructor( private http: HttpClient) { }
   
-  // This has to be removed
-  getData(){
-    return this.http.get(this.url)
-  }
 
-  // This func get data from sign_up form and save them to the database
-  saveEmployeeInfo(data:object){
+  // this func register the user to the db
+  registerUser(data:object){
     return this.http.post(this.url, data)
   }
 

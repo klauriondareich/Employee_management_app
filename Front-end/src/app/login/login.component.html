@@ -5,16 +5,16 @@
 
     <!-- Form start -->
     <div>
-        <form #signUpForm="ngForm">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <div class="form-item">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" required #username="ngModel" [ngClass]="{'invalid-field': signUpForm.submitted && username.invalid}" ngModel>
-                <span *ngIf="signUpForm.submitted && username.invalid" class="error-message">Username field is required</span>
+                <input type="text" name="username" id="username" required #username="ngModel" [ngClass]="{'invalid-field': loginForm.submitted && username.invalid}" ngModel>
+                <span *ngIf="loginForm.submitted && username.invalid" class="error-message">Username field is required</span>
             </div>
             <div class="form-item">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" required #password="ngModel" [ngClass]="{'invalid-field': signUpForm.submitted && password.invalid}" ngModel>
-                <span *ngIf="signUpForm.submitted && password.invalid" class="error-message">Password field is required</span>
+                <input type="password" name="password" id="password" required #password="ngModel" [ngClass]="{'invalid-field': loginForm.submitted && password.invalid}" ngModel>
+                <span *ngIf="loginForm.submitted && password.invalid" class="error-message">Password field is required</span>
             </div>
 
             <button type="submit" class="login-btn">Login now</button>

@@ -12,4 +12,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // User login func
+  onSubmit(loginForm:any){
+    if (!loginForm.invalid){
+      console.log("data", loginForm.value)
+    }
+  }
 }
