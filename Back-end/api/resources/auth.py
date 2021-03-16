@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonfy
+from flask import Blueprint, request, jsonify
 
 auth = Blueprint('auth', __name__, url_prefix = '/api/v1')
 
