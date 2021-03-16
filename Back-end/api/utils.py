@@ -1,10 +1,9 @@
 from flask import Flask
-
-from .resources.auth import auth
-from .resources.employee import employee
-
+from itsdangerous import URLSafeTimedSerializer
+import bcrypt
 import yaml
 import pymysql
+
 
 pymysql.install_as_MySQLdb()
 
@@ -22,12 +21,24 @@ def set_db_config(app):
     )
     app.config['SQLALCHEMY_DATABASE_URI'] = connection
 
+def set_mail_config(app):
+    app.config['MAIL_SERVER'] = conf['mail_server']
+    app.config['MAIL_USERNAME'] = conf['mail_username']
+    app.config['MAIL_PASSWORD'] = conf['mail_password']
+    app.config['MAIL_PORT'] = conf['mail_port']
+    app.config['MAIL_USE_SSL'] = conf['mail_use_ssl']
+    app.config['MAIL_USE_TLS'] = conf['mail_use_tls']
+
 def init_app():
     app = Flask(__name__)
+    set_mail_config(app)
     set_db_config(app)
     app.config['SECRET_KEY'] = conf['secret_key']
     return app
 
-def load_routes(app):
-    app.register_blueprint(auth)
-    app.register_blueprint(employee)
+def serialise_token(email):
+    serial = URLSafeTimedSerializer(conf['secret_key'])
+    return serial.dumps(email)
+
+def password_crypt(password):
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
