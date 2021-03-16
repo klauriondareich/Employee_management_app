@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserSignupService} from '../user-signup.service'
 
 @Component({
   selector: 'app-sign-up',
@@ -7,22 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  passwordErrorMsg = false;
+
+  constructor( private userSignUp:UserSignupService) { 
+
+    this.userSignUp.getData().subscribe(data => {
+      console.log(data)
+    })
+
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(signUpForm:any){
-    let datas = signUpForm;
-    if (datas.username && datas.email && datas.password){
-      console.log("form valid")
-    }
-    else console.log("done!")
-  }
+  /* This func retrieves data from the sign up form */
+  /* Checks if all conditions match then submit the datas to the DB */
 
-  // Check if the entered passwords are identical
-  // checkPassword(){
-  //   if (this.password === this.confirmPassword) return true
-  //   else return false
-  // }
+  onSubmit(signUpForm:any){
+    let data = signUpForm.value;
+
+    if (!signUpForm.invalid){
+      if (data.password === data.confirmPassword){
+        console.log("consume api");
+        this.passwordErrorMsg = false
+      }
+      else this.passwordErrorMsg = true
+    }
+  }
 }
