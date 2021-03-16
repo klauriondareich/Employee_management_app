@@ -1,0 +1,58 @@
+/* CSS Style for the sign up page */
+
+.main{
+    width: 50%;
+    margin: auto;
+    padding-left: 250px;
+}
+.form-item{
+    padding-bottom: 10px;
+}
+.form-item label{
+    display: block;
+    padding-bottom: 5px;
+    font-size: 16px;
+    color: #2b2b2d;
+    font-family: 'Montserrat', sans-serif;
+}
+.form-item input{
+    border: 2px solid #ebebeb;
+    padding: 8px;
+    width: 50%;
+    border-radius: 5px;
+    background-color: #fafbfc;
+}
+input:focus{
+  outline: 0;
+  border: 2px solid #646464!important;
+  border-radius: 5px;
+}
+input.invalid-field{border: 1px solid red!important;}
+.error-message{
+    color: red;
+    padding-top: 10px;
+    display: block;
+}
+.logo{
+    padding: 40px 0px 20px 100px;
+}
+.login-btn{
+    background-color: #1fbb4b;
+    border: 1px solid #1fbb4b;
+    border-radius: 5px;    
+    padding: 8px;
+    font-size: 15px;
+    width: 53%;
+    margin-top: 10px;
+    color: #fff;
+    font-weight: bold;
+}
+.login-btn:hover{
+    cursor: pointer;
+}
+.login-element{
+  font-size: 15px;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+.login-element a {color: #1fbb4b;}
