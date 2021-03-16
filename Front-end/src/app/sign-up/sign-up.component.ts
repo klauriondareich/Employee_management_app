@@ -12,7 +12,11 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(data:object){
-    console.log("data", data)
+  onSubmit(signUpForm:any){
+    let datas = signUpForm;
+    if (datas.username && datas.email && datas.password){
+      console.log("form valid")
+    }
+    else console.log("done!")
   }
 }
