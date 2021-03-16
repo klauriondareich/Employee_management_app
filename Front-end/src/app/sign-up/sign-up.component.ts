@@ -12,6 +12,7 @@ export class SignUpComponent implements OnInit {
 
   constructor( private userSignUp:UserSignupService) { 
 
+    // this has to be removed
     this.userSignUp.getData().subscribe(data => {
       console.log(data)
     })
@@ -22,14 +23,17 @@ export class SignUpComponent implements OnInit {
   }
 
   /* This func retrieves data from the sign up form */
-  /* Checks if all conditions match then submit the datas to the DB */
+  /* Checks if all conditions match then call the api func */
 
   onSubmit(signUpForm:any){
     let data = signUpForm.value;
-
+    console.log("data", data);
     if (!signUpForm.invalid){
-      if (data.password === data.confirmPassword){
-        console.log("consume api");
+      if (data.password === data.confirm_password){
+        // call the api and pass data
+        this.userSignUp.saveEmployeeInfo(data).subscribe((result) => {
+          console.log("result", result)
+        });
         this.passwordErrorMsg = false
       }
       else this.passwordErrorMsg = true

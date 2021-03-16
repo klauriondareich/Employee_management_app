@@ -6,10 +6,18 @@ import { HttpClient} from '@angular/common/http'
 })
 export class UserSignupService {
 
-  constructor( private http: HttpClient) { }
+  url = "http://localhost:4000/config";
 
+  constructor( private http: HttpClient) { }
+  
+  // This has to be removed
   getData(){
-    let url = "https://jsonplaceholder.typicode.com/todos";
-    return this.http.get(url)
+    return this.http.get(this.url)
   }
+
+  // This func get data from sign_up form and save them to the database
+  saveEmployeeInfo(data:object){
+    return this.http.post(this.url, data)
+  }
+
 }
