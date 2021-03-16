@@ -30,8 +30,8 @@
                 <span *ngIf="signUpForm.submitted && password.invalid" class="error-message">Password field is required</span>
             </div>
             <div class="form-item">
-                <label for="password">Confirm password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" #confirmPassword="ngModel" ngModel>
+                <label for="confirm_password">Confirm password</label>
+                <input type="password" name="confirm_password" id="confirm_password" #confirmPassword="ngModel" ngModel>
                 <span *ngIf="signUpForm.submitted && passwordErrorMsg" class="error-message">Passwords don't match</span>
             </div>
             <button type="submit" class="sign_up_btn">Sign up now</button>
