@@ -21,8 +21,8 @@ export class SignUpComponent implements OnInit {
   }
 
   // Check if the entered passwords are identical
-  checkPassword(password:string, confirmPassword:string){
-    if (password === confirmPassword) return true
-    else return false
-  }
+  // checkPassword(){
+  //   if (this.password === this.confirmPassword) return true
+  //   else return false
+  // }
 }
