@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserSignupService} from '../user-signup.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ export class SignUpComponent implements OnInit {
 
   passwordErrorMsg = false;
 
-  constructor( private userSignUp:UserSignupService) {}
+  constructor( private userSignUp:UserSignupService, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -25,9 +26,11 @@ export class SignUpComponent implements OnInit {
       if (data.password === data.confirm_password){
 
         // call the api and pass data
-        this.userSignUp.registerUser(data).subscribe((result) => {
-          console.log("result", result)
+        this.userSignUp.registerUser(data).subscribe((response) => {
+            this.router.navigate(['/login'])
+            console.log("result", response)
         });
+        
         this.passwordErrorMsg = false
         
       }
