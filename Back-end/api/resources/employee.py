@@ -1,11 +1,13 @@
 from flask import Blueprint, jsonify
+from api.decorators import token_required
 from api import db
 from api.models import Employee
 
 employee = Blueprint('employee', __name__, url_prefix = '/api/v1')
 
-# get all the employees
+# get all employees
 @employee.route('/employees', methods = ['GET'])
+@token_required
 def get_employees():
 
     employees = Employee.query.all()
@@ -25,22 +27,18 @@ def get_employees():
     return jsonify({'employees' : employees_with_specific_fields}), 200
 
 # Get an employee by his username
-@employee.route('/employee/<string:username>', methods = ['GET'])
-def get(username):
-    employee = Employee.query.filter_by(username = username).first()
+@employee.route('/employee/<string:public_id>', methods = ['GET'])
+@token_required
+def get(public_id):
+    employee = Employee.query.filter_by(public_id = public_id).first()
     
     if not employee:
         return jsonify({'message': 'This employee does not exist'})
     output = {}
-    output['id'] = employee.id
+    output['public_id'] = employee.public_id
     output['username'] = employee.username
     output['name'] = employee.name
     output['email'] = employee.email
     output['phone'] = employee.email
     
     return jsonify({'employee': output}), 200
-
-# Update an employee
-@employee.route('/employee/update/<int:id>', methods = ['PUT'])
-def update(id):
-    return 'update one employee'

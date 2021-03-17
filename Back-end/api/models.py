@@ -10,4 +10,5 @@ class Employee(db.Model):
     phone = db.Column(db.String(25), unique = True)
     email_verified = db.Column(db.Boolean, default = False)
     token = db.Column(db.String(60))
+    public_id = db.Column(db.String(255), unique = True, nullable = False)
     created_at = db.Column(db.DateTime, default = datetime.utcnow())
