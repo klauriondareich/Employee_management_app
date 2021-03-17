@@ -9,55 +9,6 @@
     font-size: 20px;
 }
 .head-content .fa-users{padding-right: 10px;}
-.sidebar{
-    width: 200px;
-    border: 1px solid #e1e4e8;
-    background: #f7f7f7;
-    height: 100%;
-    position: fixed;
-    left: 0;
-}
-.sidebar img{
-    padding-left:20px;
-    padding-top: 20px;
-}
-.sidebar ul{
-    margin: 0; 
-    padding: 20px;
-    padding-top: 50px;
-}
-.sidebar ul li{
-    list-style: none;
-    font-size: 13px;
-    font-family: 'Montserrat', sans-serif;
-    padding: 3px;
-    margin-bottom: 6px;
-}
-.sidebar ul li a{
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-}
-.sidebar ul li a:hover{color: #58585c;}
-.navbar{
-    background-color: #fafbfc;
-    border-bottom: 1px solid #e1e4e8;
-    height: 50px;
-}
-.navbar ul{
-    padding: 10px;
-    margin: 0;
-}
-.navbar ul li.list-item{
-    float: right;
-    list-style: none;
-    padding-top: 5px;
-    padding-right: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-}
-.active-item{border-left: 2px solid #1fbb4b;}
 .table-child-container{
     border: 1px solid #1fbb4b;
     border-radius: 5px;
