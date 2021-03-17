@@ -13,5 +13,5 @@ mail_server: 'smtp.gmail.com'
 mail_username: ''
 mail_password: ''
 mail_port: 465
-mail_user_ssl: True
+mail_use_ssl: True
 mail_use_tls: False
