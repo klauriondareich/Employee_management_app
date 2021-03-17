@@ -1,0 +1,17 @@
+# database
+db_user: ''
+db_host: ''
+db_password: ''
+db_name: ''
+db_connector: 'mysql+pymysql'
+db_port: '3306'
+
+secret_key: ''
+
+# Mail configuration
+mail_server: 'smtp.gmail.com'
+mail_username: ''
+mail_password: ''
+mail_port: 465
+mail_use_ssl: True
+mail_use_tls: False
