@@ -9,7 +9,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component'
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ViewEmployeeDetailsComponent } from './view-employee-details/view-employee-details.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SidebarComponent } from './sidebar/sidebar.component'
     LoginComponent,
     ListEmployeesComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ViewEmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,
