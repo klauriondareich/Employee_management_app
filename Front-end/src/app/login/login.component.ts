@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor( private userLogin:LoginService) { }
 
   ngOnInit(): void {
   }
 
-  // User login func
+  /* This func retrieves data from the login form */
+  /* Checks if all conditions match then call the api func */
+
   onSubmit(loginForm:any){
     if (!loginForm.invalid){
-      console.log("data", loginForm.value)
+
+      // call the api and sends data
+      this.userLogin.loginUser(loginForm.value).subscribe((result) =>{
+        console.log("Login successfully");
+        console.log("result", result)
+      })
+      
     }
   }
 }

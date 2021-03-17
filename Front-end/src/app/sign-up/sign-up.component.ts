@@ -22,12 +22,15 @@ export class SignUpComponent implements OnInit {
     let data = signUpForm.value;
     console.log("data", data);
     if (!signUpForm.invalid){
+
       if (data.password === data.confirm_password){
+
         // call the api and pass data
         this.userSignUp.registerUser(data).subscribe((result) => {
           console.log("result", result)
         });
         this.passwordErrorMsg = false
+        
       }
       else this.passwordErrorMsg = true
     }
