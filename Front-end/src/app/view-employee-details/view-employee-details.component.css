@@ -1,0 +1,31 @@
+.content{
+    margin-left: 200px;
+}
+.head-content h1{
+    padding: 15px 0px 0px 30px;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+.head-content .fa-users{padding-right: 10px;}
+.main-container-details{
+    padding: 20px;
+}
+.child-container-details{
+    border: 1px solid #1fbb4b;
+    background-color: #fff;
+    padding: 15px;
+    width: 60%;
+    border-radius: 5px;
+}
+.detail-element{
+    margin-bottom: 10px;
+    border: 1px solid #e1e4e8;
+    background-color: #fafbfc;
+    padding: 6px;
+    border-radius: 3px;
+}
+.detail-element .label{
+    font-weight: bold;
+}
