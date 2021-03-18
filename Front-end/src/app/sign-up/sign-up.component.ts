@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service'
+import {UserSignupService} from '../user-signup.service'
 import { Router } from '@angular/router'
 
 @Component({
@@ -11,7 +11,7 @@ export class SignUpComponent implements OnInit {
 
   passwordErrorMsg = false;
 
-  constructor( private userSignUp:AuthService, private router: Router) {}
+  constructor( private userSignUp:UserSignupService, private router: Router) {}
 
   ngOnInit(): void {
   }

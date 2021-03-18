@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import {LoginService} from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private userLogin:AuthService) { }
+  constructor( private userLogin:LoginService) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
       // call the api and sends data
       this.userLogin.loginUser(loginForm.value).subscribe((result) =>{
+        console.log("Login successfully");
         console.log("result", result)
       })
       
