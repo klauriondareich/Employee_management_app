@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 })
 export class AuthService {
   
-  url_base = "http://127.0.0.1:5000/";
+  base_url = "http://127.0.0.1:5000/";
 
   constructor( private http:HttpClient, private jwtHelper:JwtHelperService, private router:Router) { }
   
@@ -23,19 +23,20 @@ export class AuthService {
         Authorization: encoded
       })
     };
-    let url = this.url_base + "api/v1/login";
+    let url = this.base_url + "api/v1/login";
     return this.http.post(url, data, httpOptions)
   }
 
  // Allows users to logout
   logout(){
     localStorage.removeItem("user_token");
-    this.router.navigate(["/login"])
+    localStorage.removeItem("user");
+    this.router.navigate([""])
   }
 
   // This func registers the user
   registerUser(data:object){
-    let url = this.url_base + "api/v1/signup";
+    let url = this.base_url + "api/v1/signup";
     return this.http.post(url, data)
   }
 

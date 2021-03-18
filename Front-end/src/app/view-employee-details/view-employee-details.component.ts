@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetAnEmployeeService } from '../get-an-employee.service';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-employee-details',

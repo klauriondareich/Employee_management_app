@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service'
-import { Router } from '@angular/router'
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
         // call the api and pass data
         this.userSignUp.registerUser(data).subscribe((response:any) => {
             if (response.message){
-              this.router.navigate(['/login'])
+              this.router.navigate([''])
             }
             else if (response.error){
               this.signup_error_message = response.error
