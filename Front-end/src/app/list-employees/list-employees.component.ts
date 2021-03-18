@@ -12,8 +12,8 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor( private getAll:GetAllEmployeesService) {
 
-    this.getAll.retrieveAllEmployees().subscribe((data) =>{
-      this.all_employees = data;
+    this.getAll.retrieveAllEmployees().subscribe((data:any) =>{
+      this.all_employees = data.employees;
       console.log("success", data)
     })
 

@@ -36,8 +36,12 @@ table th{font-weight: bold;}
 table th.actions{
     width: 10px;
 }
-table td.status-actived{
+table td.status-activated{
     color:#1fbb4b;
+    width: 10px;
+}
+table td.status-disactivated{
+    color:red;
     width: 10px;
 }
 th,td{
