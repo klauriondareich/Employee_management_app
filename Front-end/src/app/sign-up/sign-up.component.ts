@@ -20,7 +20,6 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(signUpForm:any){
     let data = signUpForm.value;
-    console.log("data", data);
     if (!signUpForm.invalid){
 
       if (data.password === data.confirm_password){

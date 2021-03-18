@@ -6,7 +6,7 @@ import { HttpClient} from '@angular/common/http'
 })
 export class UserSignupService {
 
-  url = "http://localhost:4000/config";
+  url = "http://127.0.0.1:5000/api/v1/signup";
 
   constructor( private http: HttpClient) { }
   
