@@ -16,6 +16,7 @@ def get_employees():
     for employee in employees:
         data = {}
         data['username'] = employee.username
+        data['public_id'] = employee.public_id
         data['email'] = employee.email
         data['name'] = employee.name
         data['phone'] = employee.phone
