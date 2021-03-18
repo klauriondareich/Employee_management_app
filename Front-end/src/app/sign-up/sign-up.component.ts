@@ -34,7 +34,6 @@ export class SignUpComponent implements OnInit {
             else if (response.error){
               this.signup_error_message = response.error
             }
-            console.log("result", response)
         });
         
         this.passwordErrorMsg = false

@@ -10,6 +10,8 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
 
+  login_error_message = "";
+
   constructor( private userLogin:AuthService, private router:Router) { }
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
       this.userLogin.loginUser(loginForm.value).subscribe((response:any) =>{
         if (response.token){
           localStorage.setItem("user_token", response.token);
-          console.log("response", response)
+          localStorage.setItem("user", JSON.stringify(response.user));
           this.router.navigate(['/employees'])
         }
       })
