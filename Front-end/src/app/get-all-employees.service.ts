@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +7,18 @@ import { HttpClient } from '@angular/common/http'
 export class GetAllEmployeesService {
 
   url = "http://127.0.0.1:5000/api/v1/employees";
+  
   constructor( private http: HttpClient) { }
 
   // This fun retrieve all employees
   retrieveAllEmployees(){
-    return this.http.get(this.url)
+    let user_token = localStorage.getItem('user_token') ?? "";
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "x-access-token": user_token
+      })
+    };
+    return this.http.get(this.url, httpOptions)
   }
 
 }
