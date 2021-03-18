@@ -8,8 +8,15 @@ import {GetAllEmployeesService } from '../get-all-employees.service'
 })
 export class ListEmployeesComponent implements OnInit {
 
-  constructor( private getAllEmployees:GetAllEmployeesService) {
-    getAllEmployees.getAllEmployees()
+  all_employees:any = "";
+
+  constructor( private getAll:GetAllEmployeesService) {
+
+    this.getAll.retrieveAllEmployees().subscribe((data) =>{
+      this.all_employees = data;
+      console.log("success", data)
+    })
+
    }
 
   ngOnInit(): void {
