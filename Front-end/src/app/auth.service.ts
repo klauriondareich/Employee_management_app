@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http"
-import { HttpHeaders } from "@angular/common/http"
+import { HttpClient, HttpHeaders} from "@angular/common/http"
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      Authorization: ''
-    })
-  }
   
-  constructor( private http:HttpClient) { }
+  constructor( private http:HttpClient, private jwtHelper:JwtHelperService) { }
 
   // This func logins the user
-  loginUser(data:object){
+  loginUser(data:any){
+    let credentials = data.username + ":" + data.password;
+    credentials = window.btoa(credentials);
+    let encoded = 'Basic '+credentials;
+    // console.log("encode", encoded);
+    // let headers = new HttpHeaders({'Authorization':encoded});
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: encoded
+      })
+    };
     let url = "http://127.0.0.1:5000/api/v1/login";
-    return this.http.post(url, data, this.httpOptions)
+    return this.http.post(url, data, httpOptions)
   }
 
   // This func registers the user
@@ -28,9 +33,8 @@ export class AuthService {
   }
 
   // Checks if the user is authenticated
-  isAuthenticated(){
-    // Get the token saved when login
-    // const user = localStorage.getItem("user_token");
-    return false
+  isAuthenticated(){  
+    let user_token = localStorage.getItem("user_token") ?? undefined;
+    return !this.jwtHelper.isTokenExpired(user_token);
   }
 }
