@@ -8,9 +8,13 @@ import { AuthService } from '../auth.service'
 })
 export class NavbarComponent implements OnInit {
 
+  username: null;
+
   constructor( private auth:AuthService) { }
 
   ngOnInit(): void {
+    let user = JSON.parse(localStorage.getItem("user") ?? "");
+    this.username = user.username;
   }
 
   // Called when user click on the logout button
