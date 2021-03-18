@@ -27,6 +27,10 @@ def signup():
 
     if employee:
         return jsonify({'error': 'email, username or phone number is already used'})
+    
+    if inputs['confirm_password'] != inputs['password']:
+        return jsonify({'error': 'Your password confirmation does not match'})
+
 
     inputs['token'] = serialise_token(inputs['email_address'])[:60]
     inputs['password'] = password_crypt(inputs['password'])
@@ -48,7 +52,7 @@ def signup():
     link = url_for('auth.mail_verify', token = inputs['token'], _external = True)
     msg.body = "Please, activate your account by clicking this link: {}".format(link)
     mail.send(msg)
-    return jsonify({'message': 'Employee created successfully'}), 201
+    return jsonify({'message': 'Your account has been created successfully.', 'info': "Please, check your email to activate your account", 'status': 201}), 201
 
 @auth.route('/email-verification/<string:token>', methods = ['GET'])
 def mail_verify(token):
@@ -69,16 +73,19 @@ def login():
     if not authentication or not authentication.username or not authentication.password:
         return make_response({'error': 'all the fields are required'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
-    user = Employee.query.filter(Employee.email == authentication.username, Employee.email_verified == True).first()
+    user = Employee.query.filter(
+        (Employee.email == authentication.username) | (Employee.username == authentication.username), 
+        Employee.email_verified == True).first()
 
     if not user:
-        return make_response({'error': 'Email or password incorrect'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+        return make_response({'error': 'username or password incorrect'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
     password_encoded = authentication.password.encode('utf-8')
     hashed_password  = user.password.encode('utf-8')
     
+    # Generate the jwt token if password match
     if bcrypt.checkpw(password_encoded, hashed_password):
-        token = jwt.encode({'id' : user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, conf['secret_key'], algorithm="HS256")
+        token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, conf['secret_key'], algorithm="HS256")
 
         return jsonify({'token' : token})
 
