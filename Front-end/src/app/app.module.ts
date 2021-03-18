@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {FormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
+import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { LoginComponent } from './login/login.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -28,7 +29,7 @@ import { ViewEmployeeDetailsComponent } from './view-employee-details/view-emplo
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
