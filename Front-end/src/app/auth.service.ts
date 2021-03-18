@@ -7,28 +7,28 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 })
 export class AuthService {
   
-  constructor( private http:HttpClient, private jwtHelper:JwtHelperService) { }
+  url_base = "http://127.0.0.1:5000/";
 
+  constructor( private http:HttpClient, private jwtHelper:JwtHelperService) { }
+  
   // This func logins the user
   loginUser(data:any){
     let credentials = data.username + ":" + data.password;
     credentials = window.btoa(credentials);
     let encoded = 'Basic '+credentials;
-    // console.log("encode", encoded);
-    // let headers = new HttpHeaders({'Authorization':encoded});
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: encoded
       })
     };
-    let url = "http://127.0.0.1:5000/api/v1/login";
+    let url = this.url_base + "api/v1/login";
     return this.http.post(url, data, httpOptions)
   }
 
   // This func registers the user
   registerUser(data:object){
-    let url = "http://127.0.0.1:5000/api/v1/signup";
+    let url = this.url_base + "api/v1/signup";
     return this.http.post(url, data)
   }
 
