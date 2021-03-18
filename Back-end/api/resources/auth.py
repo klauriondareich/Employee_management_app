@@ -6,8 +6,8 @@ from flask_mail import Message
 from api import db, mail
 import datetime
 import bcrypt
-import jwt
 import uuid
+import jwt
 
 
 auth = Blueprint('auth', __name__, url_prefix = '/api/v1')
@@ -18,7 +18,7 @@ def signup():
     inputs = request.get_json()
 
     if not inputs['email_address'] or not inputs['username'] or not inputs['password']:
-        return jsonify({'error': 'fields required'}), 401
+        return jsonify({'error': 'You have to fill the required fields'}), 401
 
     employee = Employee.query.filter(
         (Employee.email == inputs['email_address'] )| 

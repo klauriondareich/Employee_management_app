@@ -23,3 +23,8 @@ db.create_all()
 ```python 
 db.create_all()
 ```
+5. Execute the application
+
+```bat
+flask run
+```
