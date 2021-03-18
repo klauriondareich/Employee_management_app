@@ -83,9 +83,3 @@ def login():
         return jsonify({'token' : token})
 
     return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
-
-@auth.route('/logout', methods = ['GET'])
-# Log out the user
-def logout():
-    request.headers['x-access-token']
-    return jsonify({token: request.headers['x-access-token']})

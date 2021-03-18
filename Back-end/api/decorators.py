@@ -15,10 +15,12 @@ def token_required(f):
 
         if not token:
             return jsonify({'message' : 'Token is missing!'}), 401
-
-        data = jwt.decode(token, conf['secret_key'], algorithms="HS256")
-        current_user = Employee.query.filter_by(id = data['id']).first()
-
+        try:
+            data = jwt.decode(token, conf['secret_key'], algorithms="HS256")
+            current_user = Employee.query.filter_by(id = data['id']).first()
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message' : "Token expired !"}), 401
+        
         if not current_user:
             return jsonify({'message' : "Token is invalid !"}), 401
 
