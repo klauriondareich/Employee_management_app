@@ -28,3 +28,5 @@ db.create_all()
 ```bat
 flask run
 ```
+
+Documentation link https://documenter.getpostman.com/view/9654230/Tz5tYbCk
