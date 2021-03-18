@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http'
 })
 export class GetAllEmployeesService {
 
-  url = "";
+  url = "http://127.0.0.1:5000/api/v1/employees";
   constructor( private http: HttpClient) { }
 
   // This fun retrieve all employees
-  getAllEmployees(){
+  retrieveAllEmployees(){
     return this.http.get(this.url)
   }
 
