@@ -12,8 +12,9 @@ export class LoggInUserGuardService {
   // Routes guard for authenticated users
   canActivate(){
     if (this.auth.isAuthenticated()){
-      this.router.navigate(['/employees'])
+      this.router.navigate(['/employees']);
+      return false
     }
-    return false
+    return true
   };
 }
