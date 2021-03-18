@@ -5,12 +5,11 @@ import { HttpHeaders } from "@angular/common/http"
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
 
-  url = "http://127.0.0.1:5000/api/v1/login";
   httpOptions = {
     headers: new HttpHeaders({
-      Authorization: 'ImtsYXVyaW9uZGFyZWljaEBnbWFpbC5jb20i.YFKNZQ.xDfheRc661QcXvOE'
+      Authorization: ''
     })
   }
   
@@ -18,6 +17,13 @@ export class LoginService {
 
   // This func logins the user
   loginUser(data:object){
-    return this.http.post(this.url, data, this.httpOptions)
+    let url = "http://127.0.0.1:5000/api/v1/login";
+    return this.http.post(url, data, this.httpOptions)
+  }
+
+  // This func registers the user
+  registerUser(data:object){
+    let url = "http://127.0.0.1:5000/api/v1/signup";
+    return this.http.post(url, data)
   }
 }
