@@ -11,11 +11,10 @@ export class AuthGuardService {
 
   // Routes guard
   canActivate(): boolean{
-    if (this.auth.isAuthenticated()) return true;
-    else {
-      this.router.navigate(['/login']);
-      return false
+    if (this.auth.isAuthenticated()){
+      return true
     }
+    this.router.navigate(['/login']);
+    return false
   }
-
 }
