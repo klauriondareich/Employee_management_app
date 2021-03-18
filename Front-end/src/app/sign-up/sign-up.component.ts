@@ -10,6 +10,7 @@ import { Router } from '@angular/router'
 export class SignUpComponent implements OnInit {
 
   passwordErrorMsg = false;
+  signup_error_message  = "";
 
   constructor( private userSignUp:AuthService, private router: Router) {}
 
@@ -26,8 +27,13 @@ export class SignUpComponent implements OnInit {
       if (data.password === data.confirm_password){
 
         // call the api and pass data
-        this.userSignUp.registerUser(data).subscribe((response) => {
-            this.router.navigate(['/login'])
+        this.userSignUp.registerUser(data).subscribe((response:any) => {
+            if (response.message){
+              this.router.navigate(['/login'])
+            }
+            else if (response.error){
+              this.signup_error_message = response.error
+            }
             console.log("result", response)
         });
         
