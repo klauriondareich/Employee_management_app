@@ -47,7 +47,7 @@ def signup():
     db.session.add(new_employee)
     db.session.commit()
 
-    # 5 - Envoyer le mail
+    # Send the mail
     msg = Message('Mail confirmation', sender = conf['mail_username'], recipients = [inputs['email_address']])
     link = url_for('auth.mail_verify', token = inputs['token'], _external = True)
     msg.body = "Please, activate your account by clicking this link: {}".format(link)
@@ -87,6 +87,6 @@ def login():
     if bcrypt.checkpw(password_encoded, hashed_password):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, conf['secret_key'], algorithm="HS256")
 
-        return jsonify({'token' : token})
+        return jsonify({'token' : token, 'user': {'email': user.email, 'name': user.name, 'public_id': user.public_id, 'username': user.username}})
 
     return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
