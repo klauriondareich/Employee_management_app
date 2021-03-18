@@ -26,4 +26,11 @@ export class AuthService {
     let url = "http://127.0.0.1:5000/api/v1/signup";
     return this.http.post(url, data)
   }
+
+  // Checks if the user is authenticated
+  isAuthenticated(){
+    // Get the token saved when login
+    // const user = localStorage.getItem("user_token");
+    return false
+  }
 }
