@@ -9,11 +9,11 @@ export class AuthGuardService {
 
   constructor( private router:Router, private auth:AuthService) { }
 
-  // Routes guard
+  // Routes guard to manange routes access
   canActivate(){
     if (this.auth.isAuthenticated()){
       return true
     }
-    return this.router.navigate(['/login']);
+    return this.router.navigate(['']);
   };
 }

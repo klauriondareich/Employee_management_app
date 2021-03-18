@@ -6,10 +6,19 @@ import { ListEmployeesComponent } from './list-employees/list-employees.componen
 import { ViewEmployeeDetailsComponent } from './view-employee-details/view-employee-details.component';
 import { NotFoundComponent } from './not-found/not-found.component'
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
+import { LoggInUserGuardService as LoggInGuard } from './logg-in-user-guard.service';
  
 const routes: Routes = [
-  {path: "sign_up",  component: SignUpComponent},
-  {path: "login",  component: LoginComponent},
+  {
+    path: "",  
+    component: LoginComponent,
+    canActivate: [LoggInGuard]
+  },
+  {
+    path: "sign_up",  
+    component: SignUpComponent,
+    canActivate: [LoggInGuard]
+  },
   {
     path: "employees",  
     component: ListEmployeesComponent,
