@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from "@angular/common/http"
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthService {
   
   url_base = "http://127.0.0.1:5000/";
 
-  constructor( private http:HttpClient, private jwtHelper:JwtHelperService) { }
+  constructor( private http:HttpClient, private jwtHelper:JwtHelperService, private router:Router) { }
   
   // This func logins the user
   loginUser(data:any){
@@ -24,6 +25,12 @@ export class AuthService {
     };
     let url = this.url_base + "api/v1/login";
     return this.http.post(url, data, httpOptions)
+  }
+
+ // Allows users to logout
+  logout(){
+    localStorage.removeItem("user_token");
+    this.router.navigate(["/login"])
   }
 
   // This func registers the user
