@@ -4,6 +4,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
 import { ViewEmployeeDetailsComponent } from './view-employee-details/view-employee-details.component';
+import { NotFoundComponent } from './not-found/not-found.component'
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
  
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     component: ViewEmployeeDetailsComponent,
     canActivate: [AuthGuard]
   },
+  {path: "**",  component: NotFoundComponent},
 ];
 
 @NgModule({

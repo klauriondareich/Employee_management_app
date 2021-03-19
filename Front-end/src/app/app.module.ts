@@ -11,7 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ViewEmployeeDetailsComponent } from './view-employee-details/view-employee-details.component'
+import { ViewEmployeeDetailsComponent } from './view-employee-details/view-employee-details.component';
+import { NotFoundComponent } from './not-found/not-found.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ViewEmployeeDetailsComponent } from './view-employee-details/view-emplo
     ListEmployeesComponent,
     NavbarComponent,
     SidebarComponent,
-    ViewEmployeeDetailsComponent
+    ViewEmployeeDetailsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
