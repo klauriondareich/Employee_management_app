@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,7 @@ export class SignUpComponent implements OnInit {
   passwordErrorMsg = false;
   signup_error_message  = "";
 
-  constructor( private userSignUp:AuthService, private router: Router) {}
+  constructor( private userSignUp:AuthService, private router: Router, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
   }
@@ -26,13 +27,16 @@ export class SignUpComponent implements OnInit {
 
       if (data.password === data.confirm_password){
 
+        this.spinner.show();// displays the loader
         // call the api and pass data
         this.userSignUp.registerUser(data).subscribe((response:any) => {
             if (response.message){
               localStorage.setItem("email_sent_msg", response.info);
+              this.spinner.hide(); // hides the loader
               this.router.navigate([''])
             }
             else if (response.error){
+              this.spinner.hide(); // hides the loader
               this.signup_error_message = response.error
             }
         });
