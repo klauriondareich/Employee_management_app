@@ -33,6 +33,11 @@ input.invalid-field{border: 1px solid red!important;}
     padding-top: 10px;
     display: block;
 }
+.success-message{
+    color: green;
+    padding-top: 10px;
+    display: block;
+}
 .logo{
     padding: 40px 0px 20px 100px;
 }

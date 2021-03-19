@@ -10,9 +10,12 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class LoginComponent implements OnInit {
 
+  email_sent_msg = "";
+
   constructor( private userLogin:AuthService, private router:Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.email_sent_msg = localStorage.getItem("email_sent_msg") ?? ""
   }
 
   /* This func retrieves data from the login form */
@@ -31,6 +34,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("user", JSON.stringify(response.user));
           // hides the loader
           this.spinner.hide();
+          // remove the email sent message from the localstorage
+          localStorage.removeItem("email_sent_msg");
           this.router.navigate(['/employees'])
         }
       }) 

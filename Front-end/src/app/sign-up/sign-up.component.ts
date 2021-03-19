@@ -29,6 +29,7 @@ export class SignUpComponent implements OnInit {
         // call the api and pass data
         this.userSignUp.registerUser(data).subscribe((response:any) => {
             if (response.message){
+              localStorage.setItem("email_sent_msg", response.info);
               this.router.navigate([''])
             }
             else if (response.error){
