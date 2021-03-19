@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       // call the api and sends data
       this.userLogin.loginUser(loginForm.value).subscribe(
         (response:any) =>{
-          console.log("response", response)
           if (response.token){
             localStorage.setItem("user_token", response.token);
             localStorage.setItem("user", JSON.stringify(response.user));
