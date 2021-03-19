@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private userLogin:AuthService) { }
+  constructor( private userLogin:AuthService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -20,9 +22,12 @@ export class LoginComponent implements OnInit {
     if (!loginForm.invalid){
 
       // call the api and sends data
-      this.userLogin.loginUser(loginForm.value).subscribe((result) =>{
-        console.log("Login successfully");
-        console.log("result", result)
+      this.userLogin.loginUser(loginForm.value).subscribe((response:any) =>{
+        if (response.token){
+          localStorage.setItem("user_token", response.token);
+          console.log("response", response)
+          this.router.navigate(['/employees'])
+        }
       })
       
     }
