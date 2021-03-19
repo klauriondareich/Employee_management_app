@@ -12,6 +12,7 @@ import jwt
 
 auth = Blueprint('auth', __name__, url_prefix = '/api/v1')
 
+# Sign up the user
 @auth.route('/signup', methods = ['POST'])
 def signup():
 
@@ -54,6 +55,7 @@ def signup():
     mail.send(msg)
     return jsonify({'message': 'Your account has been created successfully.', 'info': "Please, check your email to activate your account", 'status': 201}), 201
 
+# Email activation
 @auth.route('/email-verification/<string:token>', methods = ['GET'])
 def mail_verify(token):
     user = Employee.query.filter_by( token = token).first()
@@ -74,15 +76,19 @@ def login():
         return make_response({'error': 'all the fields are required'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
     user = Employee.query.filter(
-        (Employee.email == authentication.username) | (Employee.username == authentication.username), 
-        Employee.email_verified == True).first()
+        (Employee.email == authentication.username) | (Employee.username == authentication.username)).first()
 
+    # password or email incorrect
     if not user:
         return make_response({'error': 'username or password incorrect'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
+    # account not activated
+    if not user.email_verified:
+        return make_response({'error': 'Your account is not activated. Check your mails'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+
     password_encoded = authentication.password.encode('utf-8')
     hashed_password  = user.password.encode('utf-8')
-    
+
     # Generate the jwt token if password match
     if bcrypt.checkpw(password_encoded, hashed_password):
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, conf['secret_key'], algorithm="HS256")
