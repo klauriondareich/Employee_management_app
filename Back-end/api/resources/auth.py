@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, url_for, redirect, make_response
+from flask import Blueprint, request, jsonify, url_for, redirect
 from api.utils import serialise_token, password_crypt, conf
 from api.decorators import token_required
 from api.models import Employee
@@ -73,18 +73,18 @@ def login():
     authentication = request.authorization
 
     if not authentication or not authentication.username or not authentication.password:
-        return make_response({'error': 'all the fields are required'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+        return 'All the fields are required', 401
 
     user = Employee.query.filter(
         (Employee.email == authentication.username) | (Employee.username == authentication.username)).first()
 
     # password or email incorrect
     if not user:
-        return make_response({'error': 'username or password incorrect'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+        return 'Username or password incorrect.', 401
 
     # account not activated
     if not user.email_verified:
-        return make_response({'error': 'Your account is not activated. Check your mails'}, 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+        return 'Your account is not activated. Check your mails', 401
 
     password_encoded = authentication.password.encode('utf-8')
     hashed_password  = user.password.encode('utf-8')
@@ -94,5 +94,5 @@ def login():
         token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, conf['secret_key'], algorithm="HS256")
 
         return jsonify({'token' : token, 'user': {'email': user.email, 'name': user.name, 'public_id': user.public_id, 'username': user.username}})
-
-    return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+    
+    return 'Could not verify', 401
