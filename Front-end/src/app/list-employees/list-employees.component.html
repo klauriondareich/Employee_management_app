@@ -37,7 +37,7 @@
                                 <td *ngIf="employee.email_verified" class="status-activated">Activated</td>
                                 <td *ngIf="!employee.email_verified" class="status-disactivated">disativated</td>
                                 <td class="view-icon">
-                                    <a routerLink="['employee', employee.public_id]" style="color:#111"><i class="fa fa-eye"></i></a>
+                                    <a [routerLink]="['/employees', employee.public_id]" style="color:#111"><i class="fa fa-eye"></i></a>
                                 </td>
                             </tr>
                         </table>
