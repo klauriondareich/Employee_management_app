@@ -8,6 +8,7 @@
 
     <!-- Form start -->
     <div>
+        <span class="error-message">{{error_msg}}</span>
         <span class="success-message">{{email_sent_msg}}</span>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <div class="form-item">

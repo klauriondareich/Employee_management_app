@@ -11,6 +11,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class LoginComponent implements OnInit {
 
   email_sent_msg = "";
+  error_msg = "";
 
   constructor( private userLogin:AuthService, private router:Router, private spinner: NgxSpinnerService) { }
 
@@ -24,20 +25,22 @@ export class LoginComponent implements OnInit {
   onSubmit(loginForm:any){
     if (!loginForm.invalid){
 
-      // displays the loader
-      this.spinner.show();
-
+      this.spinner.show(); // displays the loader
       // call the api and sends data
-      this.userLogin.loginUser(loginForm.value).subscribe((response:any) =>{
-        if (response.token){
-          localStorage.setItem("user_token", response.token);
-          localStorage.setItem("user", JSON.stringify(response.user));
-          // hides the loader
-          this.spinner.hide();
-          // remove the email sent message from the localstorage
-          localStorage.removeItem("email_sent_msg");
-          this.router.navigate(['/employees'])
-        }
+      this.userLogin.loginUser(loginForm.value).subscribe(
+        (response:any) =>{
+          console.log("response", response)
+          if (response.token){
+            localStorage.setItem("user_token", response.token);
+            localStorage.setItem("user", JSON.stringify(response.user));
+            this.spinner.hide();// hides the loader
+            localStorage.removeItem("email_sent_msg"); // remove the email sent message from the localstorage
+            this.router.navigate(['/employees'])
+          }
+      },
+      (reject) => {
+        this.error_msg = reject.error;
+        this.spinner.hide()
       }) 
     }
   }
