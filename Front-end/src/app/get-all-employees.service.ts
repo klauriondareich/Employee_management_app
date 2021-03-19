@@ -6,19 +6,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 })
 export class GetAllEmployeesService {
 
-  url = "http://127.0.0.1:5000/api/v1/employees";
-  
+  base_url = "http://127.0.0.1:5000/";
+  user_token = localStorage.getItem('user_token') ?? "";
+  httpOptions = {
+    headers: new HttpHeaders({
+      "x-access-token": this.user_token
+    })
+  };
+
   constructor( private http: HttpClient) { }
 
-  // This fun retrieve all employees
+  // This fun retrieves all employees
   retrieveAllEmployees(){
-    let user_token = localStorage.getItem('user_token') ?? "";
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "x-access-token": user_token
-      })
-    };
-    return this.http.get(this.url, httpOptions)
+    let url = this.base_url + "api/v1/employees";
+    return this.http.get(url, this.httpOptions)
   }
 
 }
