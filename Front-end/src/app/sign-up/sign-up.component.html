@@ -26,7 +26,8 @@
             </div>
             <div class="form-item">
                 <label for="phone_number">Phone</label>
-                <input type="text" name="phone_number" id="phone_number" ngModel>
+                <input type="text" name="phone_number" id="phone_number" [pattern]="phoneNumbPattern" #phoneNumb="ngModel" ngModel>
+                <span *ngIf="signUpForm.submitted && phoneNumb.errors" class="error-message">Phone number is invalid</span>
             </div>
             <div class="form-item">
                 <label for="password">Password <span class="input-required-sign">*</span></label>

@@ -12,6 +12,7 @@ export class SignUpComponent implements OnInit {
 
   passwordErrorMsg = false;
   signup_error_message  = "";
+  phoneNumbPattern = "/^[0-9]+$/"
 
   constructor( private userSignUp:AuthService, private router: Router, private spinner: NgxSpinnerService) {}
 
